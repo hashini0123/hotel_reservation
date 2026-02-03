@@ -16,9 +16,9 @@ import java.util.ResourceBundle;
 
 public class CustomerInfoFormController implements Initializable {
 
-    public ObservableList<CustomerInfoDTO> getAllCustomers() throws SQLException {
+    ObservableList<CustomerInfoDTO> customerInfoDTOS = FXCollections.observableArrayList();
 
-        ObservableList<CustomerInfoDTO> customerInfoDTOS = FXCollections.observableArrayList();
+    public ObservableList<CustomerInfoDTO> getAllCustomers() throws SQLException {
 
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_reservation_system","root","1234");
@@ -85,6 +85,16 @@ public class CustomerInfoFormController implements Initializable {
         colRegisteredDate.setCellValueFactory(new PropertyValueFactory<>("registeredDate"));
         colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         colAddress.setCellValueFactory(new PropertyValueFactory<>("addresss"));
+
+        tblCustomerInfomation.setItems(customerInfoDTOS);
+
+        tblCustomerInfomation.getSelectionModel().selectedItemProperty().addListener(((observableValue, oldValue, newValue) -> {);
+
+            if(newValue != null) {
+                // You can set text fields here if needed
+            }
+
+        }));
 
     }
 
