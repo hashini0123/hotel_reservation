@@ -4,13 +4,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.dto.CustomerInfoDTO;
 
+import java.net.URL;
 import java.sql.*;
+import java.util.ResourceBundle;
 
-public class CustomerInfoFormController {
+public class CustomerInfoFormController implements Initializable {
 
     public ObservableList<CustomerInfoDTO> getAllCustomers() throws SQLException {
 
@@ -70,6 +74,19 @@ public class CustomerInfoFormController {
 
     @FXML
     private TableView<CustomerInfoDTO> tblCustomerInfomation;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        colCustomerId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colCity.setCellValueFactory(new PropertyValueFactory<>("city"));
+        colRegisteredDate.setCellValueFactory(new PropertyValueFactory<>("registeredDate"));
+        colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("addresss"));
+
+    }
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
